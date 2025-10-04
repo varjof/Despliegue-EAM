@@ -9,24 +9,24 @@ Original file is located at
 
 # Commented out IPython magic to ensure Python compatibility.
 # %%writefile app.py
-# import streamlit as st
-# import pandas as pd
-# import joblib
-# import os
+import streamlit as st
+import pandas as pd
+import joblib
+import os
 # 
-# # Load the preprocessors and model
-# @st.cache_resource
-# def load_resources():
-#     onehot_encoder = joblib.load('onehotencoder.pkl')
-#     standard_scaler = joblib.load('standard_scaler.pkl')
-#     model = joblib.load('best_bagging_linear_regressor_model.pkl')
-#     return onehot_encoder, standard_scaler, model
+# Load the preprocessors and model
+@st.cache_resource
+def load_resources():
+     onehot_encoder = joblib.load('onehotencoder.pkl')
+     standard_scaler = joblib.load('standard_scaler.pkl')
+     model = joblib.load('best_bagging_linear_regressor_model.pkl')
+     return onehot_encoder, standard_scaler, model
 # 
-# onehot_encoder, standard_scaler, model = load_resources()
+onehot_encoder, standard_scaler, model = load_resources()
 # 
-# st.title('Course Approval Prediction')
+st.title('Course Approval Prediction')
 # 
-# st.write('Enter the student information to predict course approval.')
+st.write('Enter the student information to predict course approval.')
 # 
 # # User inputs
 # felder_options = ['activo', 'visual', 'equilibrio', 'intuitivo', 'reflexivo', 'secuencial', 'sensorial', 'verbal'] # Assuming these are the possible values for Felder
