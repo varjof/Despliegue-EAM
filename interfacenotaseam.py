@@ -29,23 +29,23 @@ st.title('Course Approval Prediction')
 st.write('Enter the student information to predict course approval.')
 # 
 # # User inputs
-# felder_options = ['activo', 'visual', 'equilibrio', 'intuitivo', 'reflexivo', 'secuencial', 'sensorial', 'verbal'] # Assuming these are the possible values for Felder
-# felder = st.selectbox('Felder', felder_options)
-# examen_admision = st.number_input('Examen de admisión Universidad', min_value=0.0, max_value=5.0, step=0.01)
+felder_options = ['activo', 'visual', 'equilibrio', 'intuitivo', 'reflexivo', 'secuencial', 'sensorial', 'verbal'] # Assuming these are the possible values for Felder
+felder = st.selectbox('Felder', felder_options)
+examen_admision = st.number_input('Examen de admisión Universidad', min_value=0.0, max_value=5.0, step=0.01)
 # 
 # # Create a DataFrame from user inputs
-# input_data = pd.DataFrame([[felder, examen_admision]], columns=['Felder', 'Examen_admisión_Universidad'])
+input_data = pd.DataFrame([[felder, examen_admision]], columns=['Felder', 'Examen_admisión_Universidad'])
 # 
 # # Preprocess the input data
 # # Apply one-hot encoding to 'Felder'
-# felder_encoded = onehot_encoder.transform(input_data[['Felder']])
-# felder_encoded_df = pd.DataFrame(felder_encoded, columns=onehot_encoder.get_feature_names_out(['Felder']))
+felder_encoded = onehot_encoder.transform(input_data[['Felder']])
+felder_encoded_df = pd.DataFrame(felder_encoded, columns=onehot_encoder.get_feature_names_out(['Felder']))
 # 
 # # Apply standard scaling to 'Examen_admisión_Universidad'
-# input_data['Examen_admisión_Universidad'] = standard_scaler.transform(input_data[['Examen_admisión_Universidad']])
+input_data['Examen_admisión_Universidad'] = standard_scaler.transform(input_data[['Examen_admisión_Universidad']])
 # 
 # # Concatenate the processed features
-# processed_input = pd.concat([input_data.drop('Felder', axis=1), felder_encoded_df], axis=1)
+processed_input = pd.concat([input_data.drop('Felder', axis=1), felder_encoded_df], axis=1)
 # 
 # # Ensure the columns are in the same order as the training data
 # # This requires knowing the column order of the training data used for the model
@@ -58,7 +58,7 @@ st.write('Enter the student information to predict course approval.')
 # 
 # 
 # # Make prediction
-# if st.button('Predict'):
-#     prediction = model.predict(processed_input)
-#     st.write(f'Predicted Course Approval: {prediction[0]:.2f}')
+if st.button('Predict'):
+    prediction = model.predict(processed_input)
+    st.write(f'Predicted Course Approval: {prediction[0]:.2f}')
 #
